@@ -5,10 +5,10 @@ $(document).ready(function(){
     function displayCity(){
 
         var city = $(this).attr("city-name");
-        console.log("the city is "+city);
+        //console.log("the city is "+city);
         var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
-        console.log("this is " + queryURL);
-        // Creates AJAX call for the specific movie button being clicked
+        //console.log("this is " + queryURL);
+        // Creates AJAX call 
         $.ajax({
         url: queryURL,
         method: "GET"
@@ -18,7 +18,7 @@ $(document).ready(function(){
             var cityDiv = $("<div class='city'>");
             // Retrieves the city Data
             var temp = response.main.temp;
-            var displayTemp = $("div").text("Temp: " + temp);
+            var displayTemp = $("<div>").text("Temp: " + temp);
             console.log(displayTemp, temp);
             // Displays the temp
             cityDiv.append(displayTemp);
