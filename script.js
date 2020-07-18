@@ -4,8 +4,9 @@ $(document).ready(function(){
 
     function displayCity(){
 
-        var city = $(this).attr("city-name");
-        //console.log("the city is "+city);
+        //var city = $(this).attr("city-name");
+        var city = $("#city-input").val().trim();
+        console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
         //console.log("this is " + queryURL);
         //UV Query
@@ -82,16 +83,24 @@ $(document).ready(function(){
         $("#city-buttons").prepend(buttonDiv);
         }
     }
+    //clear search field value
+    function clear() {
+        console.log("clearing")
+        $("#city-input").empty();
+      }
 
     //on click the search button
     $("#city-submit").on("click", function(event) {
         event.preventDefault();
+        clear();
         //console.log("search button clicked");
         var city = $("#city-input").val().trim();
         if(city !== ""){
             cityArry.push(city);
             console.log(cityArry);
             generateButton();
+            displayCity();
+            clear();
         }
         else{
             return;
