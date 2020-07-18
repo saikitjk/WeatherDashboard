@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-        <meta charset="UTF-8">
-        <title>Weather Dashboard</title>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
          <!-- Bootstrap CSS -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Bootstrap Javascript-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    <!--Custom CSS and Javascript-->
+     <!--Custom CSS and Javascript-->
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 
@@ -23,9 +23,20 @@
                 <div class="col-12">Weather Dashboard</div>
             </div>   
             <div class="row secondRow">
-                <div class="col-4" id="leftMenu">Search for a city:<br></div>
-                <div class="col-6" id="rightContent">
+                <div class="col-4" id="leftMenu">Search for a city:<br>
+                    <div class="input-group md-form form-sm form-2 pl-0 ">
+                        <input class="form-control my-0 py-1 amber-border" id="city-input" type="text" placeholder="Search" aria-label="Search">
+                        <input type="submit" id="city-submit"></input>
 
+                    </div>
+                            
+                    <div id="city-buttons"></div>
+
+                      
+                </div>
+                <div class="col-6" id="rightContent">
+                    <!--content field-->
+                    <div id="city-content"></div>
                 </div>
               </div>
         </main>
@@ -56,7 +67,6 @@
         <!--JQuery Library-->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
     </body>
 </html>
 

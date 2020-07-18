@@ -27,6 +27,29 @@
     background-color: white;
 }
 
+.input-group{
+    width: 98%;
+}
+
+/*search button css*/
+#city-submit {
+    float: left;
+    width: 2.5rem;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+
+#city-submit:hover{
+    background: #0b7dda;
+}
+
+
+
 /*footer*/
 .footer{
     position: fixed;
@@ -65,4 +88,10 @@
     padding-right: 15px;
     max-width: 35px;
     height: auto;
+}
+
+@media (max-width: 500px) {
+    .col-4{
+        font-size: medium;
+    }
 }
