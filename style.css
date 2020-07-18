@@ -90,8 +90,8 @@
     height: auto;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 510px) {
     .col-4{
-        font-size: medium;
+        font-size: 200px;
     }
 }
