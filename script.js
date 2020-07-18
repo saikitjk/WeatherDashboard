@@ -1,34 +1,37 @@
 
 $(document).ready(function(){
-    var cityArry = ["Seattle","NY","HK"];
+    var cityArry = ["Hong Kong","Tokyo","Seattle","New York","Seoul"];
 
-    /*function displayCity(){
+    function displayCity(){
 
         var city = $(this).attr("city-name");
-        var queryURL = "" + city + "&apikey=";
-
+        console.log("the city is "+city);
+        var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
+        console.log("this is " + queryURL);
         // Creates AJAX call for the specific movie button being clicked
         $.ajax({
         url: queryURL,
         method: "GET"
         }).then(function(response) {
 
-        //create button to hold cities
-        var cityDiv = $("<div class='city'>");
-
-        // Retrieves the city Data
-        
-        // Displays the rating
-        cityDiv.append();
-
-
-        $("#city-content").prepend(cityDiv)
-
+            //create button to hold cities
+            var cityDiv = $("<div class='city'>");
+            // Retrieves the city Data
+            var temp = response.main.temp;
+            var displayTemp = $("div").text("Temp: " + temp);
+            console.log(displayTemp, temp);
+            // Displays the temp
+            cityDiv.append(displayTemp);
+    
 
 
-        });
+            $("#city-content").prepend(cityDiv);
 
-    }*/
+
+
+            });
+
+    }
 
     function generateButton(){
         $("#city-buttons").empty();
@@ -39,7 +42,8 @@ $(document).ready(function(){
         var buttonDiv = $("<div>");
         var cityButton = $("<button>");
         cityButton.addClass("city");
-        cityButton.attr("data-name", cityArry[i]);
+        cityButton.css("margin-bottom","10px");
+        cityButton.attr("city-name", cityArry[i]);
         cityButton.text(cityArry[i]);
         buttonDiv.append(cityButton);
         $("#city-buttons").prepend(buttonDiv);
@@ -60,6 +64,8 @@ $(document).ready(function(){
             return;
         }
     });
+
+    $(document).on("click", ".city",displayCity);
 
     generateButton();
 
