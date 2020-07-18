@@ -9,6 +9,13 @@
     
 }
 
+.jumbotron{
+    background-color: white;
+    border:2px solid rgb(207, 207, 207);
+    
+    
+}
+
 .col-12{
     background-color: SlateGray;
     height: 100px;

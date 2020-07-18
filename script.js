@@ -115,13 +115,3 @@ $(document).ready(function(){
     generateButton();
 
 });
-
-
-
-/*var uvLat = response.lat;
-                    var uvLon = response.lon;
-                    var uvDate = response.date;
-                    var uvDateISO = response.date_iso;
-                    console.log("uv query: "+ uvQueryURL);
-                    console.log("uvlat: "+uvLat+"uvlon: "+uvLon+ "uvISO: " + uvDateISO+ "UVDate: " + uvDate); */
-
