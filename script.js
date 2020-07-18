@@ -24,35 +24,45 @@ $(document).ready(function(){
             var temp = response.main.temp;
             var humidity = response.main.humidity;
             var windSpeed = response.wind.speed;
-            //UV Query
-            var lat = response.coord.lon;
-            var lon = response.coord.lat;
-            console.log("the lon and lat are "+lon+ "&"+lat);
-            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?"+lat+"&"+lon+"&apikey=7fff9c3c870a804f5643f8216e943977";
+            //lat and lon for UV Query
+            var lat = response.coord.lat;
+            var lon = response.coord.lon;
+            console.log("the lat: "+lat+ "&"+lon);
+            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid=7fff9c3c870a804f5643f8216e943977";
             //console.log("this is " + uvQueryURL);
             $.ajax({
                 url: uvQueryURL,
                 method: "GET"
                 }).then(function(response) {
-                     //get UV Index
+                    //get UV Index ans testing
+                    //var uvLat = response.lat;
+                    //var uvLon = response.lon;
+                    //var uvDate = response.date;
+                    //var uvDateISO = response.date_iso;
+                    //console.log("uv query: "+ uvQueryURL);
+                    //console.log("uvlat: "+uvLat+"uvlon: "+uvLon+ "uvISO: " + uvDateISO+ "UVDate: " + uvDate);
+                    
                     var uvIndex = response.value;
-                });
+                
 
-            //get UV Index
+                    //create div to store the retrieved data
+                    var displayTemp = $("<div>").text("Temp: " + temp);
+                    var displayHumid = $("<p>").text("Humidity: " + humidity);
+                    var displaySpeed = $("<p>").text("Wind speed: " + windSpeed);
+                    var displayUV = $("<div>").text("UV Index: " +uvIndex);
 
+                    console.log(displayUV, uvIndex);
+                    // Displays the data
+                    cityDiv.append(displayTemp);
+                    cityDiv.append(displayHumid);
+                    cityDiv.append(displaySpeed);
+                    cityDiv.append(displayUV);
+            
+                    $("#city-content").append(cityDiv);
+        });
+            
 
-            //get UV Index
-
-
-            //create div to store the retrieved data
-            var displayTemp = $("<div>").text("Temp: " + temp);
-            console.log(displayTemp, temp);
-            // Displays the temp
-            cityDiv.append(displayTemp);
-    
-            $("#city-content").append(cityDiv);
-
-            });
+        });
 
     }
 
@@ -95,4 +105,11 @@ $(document).ready(function(){
 });
 
 
+
+/*var uvLat = response.lat;
+                    var uvLon = response.lon;
+                    var uvDate = response.date;
+                    var uvDateISO = response.date_iso;
+                    console.log("uv query: "+ uvQueryURL);
+                    console.log("uvlat: "+uvLat+"uvlon: "+uvLon+ "uvISO: " + uvDateISO+ "UVDate: " + uvDate); */
 
