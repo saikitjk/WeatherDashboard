@@ -2,10 +2,10 @@
 $(document).ready(function(){
     var cityArry = ["Hong Kong","Tokyo","Seattle","New York","Seoul"];
 
-    function displayCity(){
-
+    function displayCity(passingData){
+        var city = passingData;
         //var city = $(this).attr("city-name");
-        var city = $("#city-input").val().trim();
+        //var city = $("#city-input").val().trim();
         console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
         //console.log("this is " + queryURL);
@@ -60,12 +60,11 @@ $(document).ready(function(){
                     cityDiv.append(displayUV);
             
                     $("#city-content").append(cityDiv);
-        });
-            
-
+                });
         });
 
     }
+
 
     function generateButton(){
         $("#city-buttons").empty();
@@ -89,25 +88,29 @@ $(document).ready(function(){
         $("#city-input").empty();
       }
 
-    //on click the search button
+    //on click the search button and input box
     $("#city-submit").on("click", function(event) {
         event.preventDefault();
-        clear();
+        
         //console.log("search button clicked");
-        var city = $("#city-input").val().trim();
-        if(city !== ""){
-            cityArry.push(city);
+        var passingData = $("#city-input").val().trim();
+        if(passingData !== ""){
+            cityArry.push(passingData);
             console.log(cityArry);
             generateButton();
-            displayCity();
-            clear();
+            //passing city name from inputbox to displayCity function
+            displayCity(passingData);
         }
         else{
             return;
         }
     });
-
-    $(document).on("click", ".city",displayCity);
+    //onclick for button
+    $(document).on("click", ".city", function(event){
+        var passingData = $(this).attr("city-name");
+        //passing city name from button to displayCity function
+        displayCity(passingData);
+    });
 
     generateButton();
 
