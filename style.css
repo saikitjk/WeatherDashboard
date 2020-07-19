@@ -12,8 +12,12 @@
 .jumbotron{
     background-color: white;
     border:2px solid rgb(207, 207, 207);
-    
-    
+    height: 20rem;
+}
+.buttomJum{
+    background-color: white;
+    border:2px solid rgb(207, 207, 207);
+    height: 10rem;
 }
 
 .col-12{
