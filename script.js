@@ -113,6 +113,46 @@ $(document).ready(function(){
 
     }
 
+    function displayForecast(passingData){
+        //console.log("function called");
+        var city = passingData;
+        var unit = passingUnit;
+
+        //switching C and F
+        if(passingUnit === "metric"){
+            var displayUnit = (" C");
+            }
+        else if(passingUnit === "imperial"){
+            var displayUnit = (" F");
+            }
+
+        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
+                
+                for (var i =0; i < 5; i++){
+
+                    var forecastDiv = $("<div class='forecastContent'>");
+                    //retrieve forecast data
+                    var forecastTemp = response.list.main.temp;
+                    console.log("forecast temp" + forecastTemp);
+                    //create div to store
+                    var displayForecastTemp = $("<div>").text("Temp: " + forecastTemp + displayUnit); 
+
+                    //Display data
+                    forecastDiv.append(displayForecastTemp);
+
+                    $("#forecast-content").append(forecastDiv);
+                }
+
+                
+            });
+
+    }
+
    
 
     function generateButton(){
@@ -149,6 +189,7 @@ $(document).ready(function(){
             generateButton();
             //passing city name from inputbox to displayCity function
             displayCity(passingData);
+            displayForecast(passingData);
             
         }
         else{
@@ -160,6 +201,7 @@ $(document).ready(function(){
         var passingData = $(this).attr("city-name");
         //passing city name from button to displayCity function
         displayCity(passingData);
+        displayForecast(passingData);
         clear();
 
     });
