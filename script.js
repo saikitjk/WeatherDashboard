@@ -2,13 +2,35 @@
 $(document).ready(function(){
     var currentDate = moment().format("MMMM DD, gggg");
     var cityArry = ["Hong Kong","Tokyo","Seattle","New York","Seoul"];
+    var passingUnit = "metric";
+    $("#imperial").on("click", function(){
+           
+        passingUnit = "imperial";
+    
+        }); 
+    $("#metric").on("click", function(){
+
+        passingUnit = "metric";
+        }); 
 
     function displayCity(passingData){
+
+        //console.log(passingUnit);
         var city = passingData;
+        var unit = passingUnit;
+
+        //switching C and F
+        if(passingUnit === "metric"){
+            var displayUnit = (" C");
+            }
+        else if(passingUnit === "imperial"){
+            var displayUnit = (" F");
+            }
 
         console.log("the city is "+city);
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
         //console.log("this is " + queryURL);
+
         
         // Creates AJAX call 
         $.ajax({
@@ -24,46 +46,33 @@ $(document).ready(function(){
             var temp = response.main.temp;
             var humidity = response.main.humidity;
             var windSpeed = response.wind.speed;
-
-            //toogle effect
-            $("#").on("click", function(){
-                
-                console.log("clicked" + x);
-                $(this).val() === "on"
-                if($(this).val() == "on"){
-                    console.log("hey");
-                
-                }
-            }); 
-
-
+            var cloud = response.clouds.all;
+            console.log(cloud + "%");
             //lat and lon for UV Query
             var lat = response.coord.lat;
             var lon = response.coord.lon;
             console.log("the lat: "+lat+ "&"+lon);
             var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid=7fff9c3c870a804f5643f8216e943977";
             //console.log("this is " + uvQueryURL);
+            
+            //cludiness
+            /*if(cloud < 10){
+                var cloudCover = ()
+            }*/
+
+            //nested ajax call
             $.ajax({
                 url: uvQueryURL,
                 method: "GET"
                 }).then(function(response) {
-                    //get UV Index ans testing
-                    //var uvLat = response.lat;
-                    //var uvLon = response.lon;
-                    //var uvDate = response.date;
-                    //var uvDateISO = response.date_iso;
-                    //console.log("uv query: "+ uvQueryURL);
-                    //console.log("uvlat: "+uvLat+"uvlon: "+uvLon+ "uvISO: " + uvDateISO+ "UVDate: " + uvDate);
-
                     var uvIndex = response.value;
                     console.log(uvIndex);
 
                     //create div to store the retrieved data
                     var displayCityName = $("<h3>").text(city + " ("+ currentDate +")");
-                    var displayTemp = $("<div>").text("Temp: " + temp);
+                    var displayTemp = $("<div>").text("Temp: " + temp + displayUnit);
                     var displayHumid = $("<p>").text("Humidity: " + humidity + "%");
                     var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + " MPH");
-                    var displayUnits = ("Fahrenheit");
                     //UV Index color
                     var uvNum = $("<color-box>").text(uvIndex);
                         uvNum.css("color","white");
@@ -89,19 +98,10 @@ $(document).ready(function(){
                             var displayUV = ("UV Index: Extreme ");
                             uvNum.css("background-color","violet");
                         }
-                    //F / C
-                    
-                    
-                        
-                    //var displayUV = uvText+uvNum;
 
-
-                    //console.log(displayUV, uvIndex);
                     // Displays the data
                     cityDiv.append(displayCityName);
                     cityDiv.append(displayTemp);
-                    cityDiv.append(displayUnits);
-                    cityDiv.append(unitToggle);
                     cityDiv.append(displayHumid);
                     cityDiv.append(displaySpeed);
                     cityDiv.append(displayUV);
@@ -113,6 +113,7 @@ $(document).ready(function(){
 
     }
 
+   
 
     function generateButton(){
         $("#city-buttons").empty();
@@ -160,6 +161,7 @@ $(document).ready(function(){
         //passing city name from button to displayCity function
         displayCity(passingData);
         clear();
+
     });
 
     generateButton();
