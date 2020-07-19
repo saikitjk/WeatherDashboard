@@ -10,6 +10,7 @@
 }
 
 .jumbotron{
+    margin-top: 1rem;
     background-color: white;
     border:2px solid rgb(207, 207, 207);
     height: 20rem;

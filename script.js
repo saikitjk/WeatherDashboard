@@ -20,7 +20,7 @@ $(document).ready(function(){
             //get UV Index
 
             //create button to hold cities
-            var cityDiv = $("<div class='city'>");
+            var cityDiv = $("<div class='cityContent'>");
             // Retrieves the city Data
             var temp = response.main.temp;
             var humidity = response.main.humidity;
@@ -76,6 +76,7 @@ $(document).ready(function(){
                             var displayUV = ("UV Index: Extreme ");
                             uvNum.css("background-color","violet");
                         }
+                    //F / C
                     
                     
                         
@@ -123,7 +124,7 @@ $(document).ready(function(){
     //on click the search button and input box
     $("#city-submit").on("click", function(event) {
         event.preventDefault();
-        
+        clear();
         //console.log("search button clicked");
         var passingData = $("#city-input").val().trim();
         if(passingData !== ""){
@@ -132,7 +133,7 @@ $(document).ready(function(){
             generateButton();
             //passing city name from inputbox to displayCity function
             displayCity(passingData);
-            clear();
+            
         }
         else{
             return;
