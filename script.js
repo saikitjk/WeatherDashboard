@@ -25,6 +25,17 @@ $(document).ready(function(){
             var temp = response.main.temp;
             var humidity = response.main.humidity;
             var windSpeed = response.wind.speed;
+            //unitToggle
+            var unitToggle = $("<div class='switch'>");
+            var toggleType = $("<input>");
+                toggleType.attr("id","cmn-toggle-1");
+                toggleType.attr("type","checkbox");
+                toggleType.addClass("cmn-toggle cmn-toggle-round");
+            var toggleStyle = $("<label>");
+                toggleStyle.attr("for","cmn-toggle-1");
+            //toggleType.append(toggleStyle);
+            unitToggle.append(toggleType, toggleStyle);
+
             //lat and lon for UV Query
             var lat = response.coord.lat;
             var lon = response.coord.lon;
@@ -87,6 +98,7 @@ $(document).ready(function(){
                     // Displays the data
                     cityDiv.append(displayCityName);
                     cityDiv.append(displayTemp);
+                    cityDiv.append(unitToggle);
                     cityDiv.append(displayHumid);
                     cityDiv.append(displaySpeed);
                     cityDiv.append(displayUV);
