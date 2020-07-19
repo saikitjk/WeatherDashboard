@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+    var currentDate = moment().format("MMMM DD, gggg");
     var cityArry = ["Hong Kong","Tokyo","Seattle","New York","Seoul"];
 
     function displayCity(passingData){
@@ -9,7 +10,6 @@ $(document).ready(function(){
         console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
         //console.log("this is " + queryURL);
-        //UV Query
         
         // Creates AJAX call 
         $.ajax({
@@ -42,22 +42,54 @@ $(document).ready(function(){
                     //var uvDateISO = response.date_iso;
                     //console.log("uv query: "+ uvQueryURL);
                     //console.log("uvlat: "+uvLat+"uvlon: "+uvLon+ "uvISO: " + uvDateISO+ "UVDate: " + uvDate);
-                    
+
                     var uvIndex = response.value;
-                
+                    console.log(uvIndex);
 
                     //create div to store the retrieved data
+                    var displayCityName = $("<h3>").text(city + " ("+ currentDate +")");
                     var displayTemp = $("<div>").text("Temp: " + temp);
-                    var displayHumid = $("<p>").text("Humidity: " + humidity);
-                    var displaySpeed = $("<p>").text("Wind speed: " + windSpeed);
-                    var displayUV = $("<div>").text("UV Index: " +uvIndex);
+                    var displayHumid = $("<p>").text("Humidity: " + humidity + "%");
+                    var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + " MPH");
+                    //UV Index color
+                    var uvNum = $("<color-box>").text(uvIndex);
+                        uvNum.css("color","white");
+                        uvNum.css("padding", "4px");
+                        uvNum.css("border-radius","4px");
+                        if (uvIndex >-1 && 3>uvIndex){
+                            var displayUV = ("UV Index: Low ");
+                            uvNum.css("background-color","green");
+                        }
+                        else if(uvIndex >2 && 6>uvIndex){
+                            var displayUV = ("UV Index: Moderate ");
+                            uvNum.css("background-color","yellow");
+                        }
+                        else if(uvIndex >5 && 8>uvIndex){
+                            var displayUV = ("UV Index: High ");
+                            uvNum.css("background-color","orange");
+                        }
+                        else if(uvIndex >7 && 11>uvIndex){
+                            var displayUV = ("UV Index: Very high ");
+                            uvNum.css("background-color","red");
+                        }
+                        else if(uvIndex>10){
+                            var displayUV = ("UV Index: Extreme ");
+                            uvNum.css("background-color","violet");
+                        }
+                    
+                    
+                        
+                    //var displayUV = uvText+uvNum;
 
-                    console.log(displayUV, uvIndex);
+
+                    //console.log(displayUV, uvIndex);
                     // Displays the data
+                    cityDiv.append(displayCityName);
                     cityDiv.append(displayTemp);
                     cityDiv.append(displayHumid);
                     cityDiv.append(displaySpeed);
                     cityDiv.append(displayUV);
+                    cityDiv.append(uvNum);
             
                     $("#city-content").append(cityDiv);
                 });
@@ -85,7 +117,7 @@ $(document).ready(function(){
     //clear search field value
     function clear() {
         console.log("clearing")
-        $("#city-input").empty();
+        $("#city-content").empty();
       }
 
     //on click the search button and input box
@@ -100,6 +132,7 @@ $(document).ready(function(){
             generateButton();
             //passing city name from inputbox to displayCity function
             displayCity(passingData);
+            clear();
         }
         else{
             return;
@@ -110,6 +143,7 @@ $(document).ready(function(){
         var passingData = $(this).attr("city-name");
         //passing city name from button to displayCity function
         displayCity(passingData);
+        clear();
     });
 
     generateButton();
