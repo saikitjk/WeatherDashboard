@@ -5,8 +5,7 @@ $(document).ready(function(){
 
     function displayCity(passingData){
         var city = passingData;
-        //var city = $(this).attr("city-name");
-        //var city = $("#city-input").val().trim();
+
         console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&apikey=7fff9c3c870a804f5643f8216e943977";
         //console.log("this is " + queryURL);
@@ -25,16 +24,18 @@ $(document).ready(function(){
             var temp = response.main.temp;
             var humidity = response.main.humidity;
             var windSpeed = response.wind.speed;
-            //unitToggle
-            var unitToggle = $("<div class='switch'>");
-            var toggleType = $("<input>");
-                toggleType.attr("id","cmn-toggle-1");
-                toggleType.attr("type","checkbox");
-                toggleType.addClass("cmn-toggle cmn-toggle-round");
-            var toggleStyle = $("<label>");
-                toggleStyle.attr("for","cmn-toggle-1");
-            //toggleType.append(toggleStyle);
-            unitToggle.append(toggleType, toggleStyle);
+
+            //toogle effect
+            $("#").on("click", function(){
+                
+                console.log("clicked" + x);
+                $(this).val() === "on"
+                if($(this).val() == "on"){
+                    console.log("hey");
+                
+                }
+            }); 
+
 
             //lat and lon for UV Query
             var lat = response.coord.lat;
@@ -62,6 +63,7 @@ $(document).ready(function(){
                     var displayTemp = $("<div>").text("Temp: " + temp);
                     var displayHumid = $("<p>").text("Humidity: " + humidity + "%");
                     var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + " MPH");
+                    var displayUnits = ("Fahrenheit");
                     //UV Index color
                     var uvNum = $("<color-box>").text(uvIndex);
                         uvNum.css("color","white");
@@ -98,6 +100,7 @@ $(document).ready(function(){
                     // Displays the data
                     cityDiv.append(displayCityName);
                     cityDiv.append(displayTemp);
+                    cityDiv.append(displayUnits);
                     cityDiv.append(unitToggle);
                     cityDiv.append(displayHumid);
                     cityDiv.append(displaySpeed);
