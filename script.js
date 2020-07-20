@@ -18,7 +18,7 @@ $(document).ready(function(){
         //console.log(passingUnit);
         var city = passingData;
         var unit = passingUnit;
-        var apikey = "";
+        var apikey = config.api_key;
 
         //switching C and F
         if(passingUnit === "metric"){
@@ -28,7 +28,6 @@ $(document).ready(function(){
         else if(passingUnit === "imperial"){
             var displayUnit = (" F");
             var displaySpeedUnit = (" MPH");
-            var unitChoice = ("Data is shown in imperial format")
             }
 
 
