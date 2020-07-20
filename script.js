@@ -136,17 +136,27 @@ $(document).ready(function(){
             }).then(function(response) {
                 
                 for (var i =0; i < 5; i++){
-
+                    var forecastDate = moment().add(i,'days').format("MMMM DD, gggg");
                     var forecastDiv = $("<div class='forecastContent'>");
                     //retrieve forecast data
+                    //var forecastDate = response.list[i].dt_txt;
                     var forecastTemp = response.list[i].main.temp;
-                    console.log("forecast temp" + forecastTemp);
+                    var forecastHumid = response.list[i].main.humidity;
+                    var forecastIcon = response.list[i].weather[0].icon;
+                    var displayForecastIcon = $("<img id='forecastIcon'>");
+                        displayForecastIcon.attr("src","http://openweathermap.org/img/w/" + forecastIcon + ".png");
+                    //console.log("forecast temp" + forecastTemp);
                     //create div to store
+                    var displayForcastDate = $("<h5>").text(forecastDate);
                     var displayForecastTemp = $("<div>").text("Temp: " + forecastTemp + displayUnit); 
-
+                    var displayForecastHumid = $("<p>").text("Humidity: " + forecastHumid + "%");
                     //Display data
+                    forecastDiv.append(displayForcastDate);
+                    forecastDiv.append(displayForecastIcon);
                     forecastDiv.append(displayForecastTemp);
+                    forecastDiv.append(displayForecastHumid);
 
+                    //append data to html
                     $("#forecast-content").append(forecastDiv);
                 }
 
@@ -177,6 +187,7 @@ $(document).ready(function(){
     function clear() {
         console.log("clearing")
         $("#city-content").empty();
+        $("#forecast-content").empty();
       }
 
     //on click the search button and input box
