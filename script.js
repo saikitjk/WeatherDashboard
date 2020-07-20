@@ -179,6 +179,7 @@ $(document).ready(function(){
         var cityButton = $("<button>");
         cityButton.addClass("city");
         cityButton.css("margin-bottom","10px");
+        cityButton.css("background-color","white");
         cityButton.attr("city-name", cityArry[i]);
         cityButton.text(cityArry[i]);
         buttonDiv.append(cityButton);
