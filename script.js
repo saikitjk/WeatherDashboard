@@ -22,9 +22,11 @@ $(document).ready(function(){
         //switching C and F
         if(passingUnit === "metric"){
             var displayUnit = (" C");
+            var displaySpeedUnit = (" KPH");
             }
         else if(passingUnit === "imperial"){
             var displayUnit = (" F");
+            var displaySpeedUnit = (" MPH");
             }
 
         console.log("the city is "+city);
@@ -70,7 +72,7 @@ $(document).ready(function(){
                     var displayCityName = $("<h3>").text(city + " ("+ currentDate +")");
                     var displayTemp = $("<div>").text("Temp: " + temp + displayUnit);
                     var displayHumid = $("<p>").text("Humidity: " + humidity + "%");
-                    var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + " MPH");
+                    var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + displaySpeedUnit);
                     
                     //UV Index color
                     var uvNum = $("<color-box>").text(uvIndex);
