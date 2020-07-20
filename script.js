@@ -18,6 +18,7 @@ $(document).ready(function(){
         //console.log(passingUnit);
         var city = passingData;
         var unit = passingUnit;
+        var apikey = "";
 
         //switching C and F
         if(passingUnit === "metric"){
@@ -32,7 +33,7 @@ $(document).ready(function(){
 
 
         console.log("the city is "+city);
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + apikey;
         //console.log("this is " + queryURL);
 
         
@@ -58,7 +59,7 @@ $(document).ready(function(){
             var lat = response.coord.lat;
             var lon = response.coord.lon;
             console.log("the lat: "+lat+ "&"+lon);
-            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid=7fff9c3c870a804f5643f8216e943977";
+            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+apikey;
             //console.log("this is " + uvQueryURL);
             
     
