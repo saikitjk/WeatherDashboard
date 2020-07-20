@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 
         console.log("the city is "+city);
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
         //console.log("this is current weather API call " + queryURL);
 
         
@@ -56,12 +56,12 @@ $(document).ready(function(){
             //weather icon
             var currentIcon = response.weather[0].icon;
             var displayIcon = $("<img id='weatherIcon'>");
-                displayIcon.attr("src","http://openweathermap.org/img/w/" + currentIcon + ".png");
+                displayIcon.attr("src","https://openweathermap.org/img/w/" + currentIcon + ".png");
             //lat and lon for UV Query
             var lat = response.coord.lat;
             var lon = response.coord.lon;
             console.log("the lat: "+lat+ "&"+lon);
-            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&apikey="+apikey;
+            var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&apikey="+apikey;
             //console.log("this is UV API call" + uvQueryURL);
             
     
@@ -133,7 +133,7 @@ $(document).ready(function(){
             var displayUnit = (" F");
             }
 
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=" + apikey;
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=" + apikey;
         //console.log("this is 5 day api call "+ queryURL);
         $.ajax({
             url: queryURL,
