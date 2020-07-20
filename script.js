@@ -33,7 +33,7 @@ $(document).ready(function(){
 
         console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + apikey;
-        //console.log("this is " + queryURL);
+        console.log("this is current weather API call " + queryURL);
 
         
         // Creates AJAX call 
@@ -59,7 +59,7 @@ $(document).ready(function(){
             var lon = response.coord.lon;
             console.log("the lat: "+lat+ "&"+lon);
             var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+apikey;
-            //console.log("this is " + uvQueryURL);
+            console.log("this is UV API call" + uvQueryURL);
             
     
             //nested ajax call
@@ -131,7 +131,7 @@ $(document).ready(function(){
             }
 
         var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
-
+        console.log("this is 5 day api call "+ queryURL);
         $.ajax({
             url: queryURL,
             method: "GET"
