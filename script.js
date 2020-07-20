@@ -27,7 +27,9 @@ $(document).ready(function(){
         else if(passingUnit === "imperial"){
             var displayUnit = (" F");
             var displaySpeedUnit = (" MPH");
+            var unitChoice = ("Data is shown in imperial format")
             }
+
 
         console.log("the city is "+city);
         var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
@@ -218,6 +220,35 @@ $(document).ready(function(){
         clear();
 
     });
+
+    function clearUnitText(){
+        console.log("clearing");
+        $("#displayUnitSelection").empty()
+    }
+
+    //onclick unit button
+    $("#metric").on("click", function(event){
+         //append unit choice display
+         clearUnitText()
+         var unitChoice = ("Weather data is in metric format");
+         var unitHTML =$("<div class='unitD'>");
+         var unitText = $("<p>").text(unitChoice);
+             unitText.css("font-size","10px");
+         unitHTML.append(unitText);
+         $("#displayUnitSelection").append(unitHTML);
+         
+    });
+    $("#imperial").on("click", function(event){
+        //append unit choice display
+        clearUnitText()
+        var unitChoice = ("Weather data is in imperial format");
+        var unitHTML =$("<div class='unitD'>");
+        var unitText = $("<p>").text(unitChoice);
+            unitText.css("font-size","10px");
+        unitHTML.append(unitText);
+        $("#displayUnitSelection").append(unitHTML);
+        
+   });
 
     generateButton();
 

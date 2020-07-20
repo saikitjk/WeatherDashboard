@@ -56,6 +56,10 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
 }
+#displayUnitSelection{
+    padding-top: 10px;
+    margin-bottom: 1px;
+}
 
 /*search button css*/
 #city-submit {
@@ -92,6 +96,21 @@
     padding-right: 10px;
 
 }
+
+/*unit buttons*/
+#metric{
+    width: 62px;
+    height: 28px;
+    padding: 1px;
+}
+
+#imperial{
+    padding: 1px;
+    width: 65px;
+    height: 28px;
+    margin-left: 10px;
+}
+
 
 
 /*footer*/
@@ -153,6 +172,12 @@
         width: 50%;
         padding-bottom: 1rem;
         padding-left: 1rem;
+    }
+
+    #bottomJum{
+        background-color: lightblue;
+        border:2px solid rgb(207, 207, 207);
+        height: 30rem;
     }
     
 }
