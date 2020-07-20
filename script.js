@@ -46,8 +46,10 @@ $(document).ready(function(){
             var temp = response.main.temp;
             var humidity = response.main.humidity;
             var windSpeed = response.wind.speed;
-            var cloud = response.clouds.all;
-            console.log(cloud + "%");
+            //weather icon
+            var currentIcon = response.weather[0].icon;
+            var displayIcon = $("<img id='weatherIcon'>");
+                displayIcon.attr("src","http://openweathermap.org/img/w/" + currentIcon + ".png");
             //lat and lon for UV Query
             var lat = response.coord.lat;
             var lon = response.coord.lon;
@@ -55,11 +57,7 @@ $(document).ready(function(){
             var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&appid=7fff9c3c870a804f5643f8216e943977";
             //console.log("this is " + uvQueryURL);
             
-            //cludiness
-            /*if(cloud < 10){
-                var cloudCover = ()
-            }*/
-
+    
             //nested ajax call
             $.ajax({
                 url: uvQueryURL,
@@ -73,6 +71,7 @@ $(document).ready(function(){
                     var displayTemp = $("<div>").text("Temp: " + temp + displayUnit);
                     var displayHumid = $("<p>").text("Humidity: " + humidity + "%");
                     var displaySpeed = $("<p>").text("Wind speed: " + windSpeed + " MPH");
+                    
                     //UV Index color
                     var uvNum = $("<color-box>").text(uvIndex);
                         uvNum.css("color","white");
@@ -102,6 +101,7 @@ $(document).ready(function(){
                     // Displays the data
                     cityDiv.append(displayCityName);
                     cityDiv.append(displayTemp);
+                    cityDiv.append(displayIcon);
                     cityDiv.append(displayHumid);
                     cityDiv.append(displaySpeed);
                     cityDiv.append(displayUV);
@@ -137,7 +137,7 @@ $(document).ready(function(){
 
                     var forecastDiv = $("<div class='forecastContent'>");
                     //retrieve forecast data
-                    var forecastTemp = response.list.main.temp;
+                    var forecastTemp = response.list[i].main.temp;
                     console.log("forecast temp" + forecastTemp);
                     //create div to store
                     var displayForecastTemp = $("<div>").text("Temp: " + forecastTemp + displayUnit); 
