@@ -1,8 +1,11 @@
 
 $(document).ready(function(){
+    var apikey = "7fff9c3c870a804f5643f8216e943977";
+    //var apikey = config.api_key;
     var currentDate = moment().format("MMMM DD, gggg");
     var cityArry = ["Hong Kong","Tokyo","Seattle","New York","Seoul"];
     var passingUnit = "metric";
+    
     $("#imperial").on("click", function(){
            
         passingUnit = "imperial";
@@ -18,8 +21,7 @@ $(document).ready(function(){
         //console.log(passingUnit);
         var city = passingData;
         var unit = passingUnit;
-        var apikey = "7fff9c3c870a804f5643f8216e943977";
-        //var apikey = config.api_key;
+
 
         //switching C and F
         if(passingUnit === "metric"){
@@ -33,7 +35,7 @@ $(document).ready(function(){
 
 
         console.log("the city is "+city);
-        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + apikey;
+        var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
         //console.log("this is current weather API call " + queryURL);
 
         
@@ -59,7 +61,7 @@ $(document).ready(function(){
             var lat = response.coord.lat;
             var lon = response.coord.lon;
             console.log("the lat: "+lat+ "&"+lon);
-            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+apikey;
+            var uvQueryURL = "http://api.openweathermap.org/data/2.5/uvi?lat="+lat+"&lon="+lon+"&apikey="+apikey;
             //console.log("this is UV API call" + uvQueryURL);
             
     
@@ -131,7 +133,7 @@ $(document).ready(function(){
             var displayUnit = (" F");
             }
 
-        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=7fff9c3c870a804f5643f8216e943977";
+        var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=" +unit +"&apikey=" + apikey;
         //console.log("this is 5 day api call "+ queryURL);
         $.ajax({
             url: queryURL,
