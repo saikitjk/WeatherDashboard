@@ -201,9 +201,11 @@ $(document).ready(function(){
         event.preventDefault();
         clear();
         //console.log("search button clicked");
-        var passingData = $("#city-input").val().trim();
+        var inputData = $("#city-input").val().trim();
+        var passingData = inputData.charAt(0).toUpperCase()+inputData.slice(1);
+        console.log(typeof passingData);
         if (cityArry.includes(passingData)){
-            //console.log("dllm");
+            console.log("dllm");
             var n = true;
         }
         else{
@@ -214,7 +216,7 @@ $(document).ready(function(){
             cityArry.push(passingData);
             console.log("passingData is "+passingData);
             console.log(cityArry);
-            generateButton();
+
             //passing city name from inputbox to displayCity function
             displayCity(passingData);
             displayForecast(passingData);
@@ -225,6 +227,7 @@ $(document).ready(function(){
                 cityArry.push(passingData);
                 console.log("passingData is "+passingData);
                 console.log(cityArry);
+                generateButton();
                 //passing city name from inputbox to displayCity function
                 displayCity(passingData);
                 displayForecast(passingData);
