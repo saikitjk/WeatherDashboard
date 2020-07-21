@@ -141,7 +141,7 @@ $(document).ready(function(){
             }).then(function(response) {
                 
                 for (var i =0; i < 5; i++){
-                    var forecastDate = moment().add(i,'days').format("MMMM DD, gggg");
+                    var forecastDate = moment().add(i,'days').format("dddd,MMMM DD, gggg");
                     var forecastDiv = $("<div class='forecastContent'>");
                     //retrieve forecast data
                     //var forecastDate = response.list[i].dt_txt;
