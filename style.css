@@ -79,9 +79,10 @@
 }
 
 #city-buttons{
-
+    
     padding-left: 1rem;
 }
+
 
 /*lower box*/
 .forecastCon{
@@ -113,6 +114,23 @@
     margin-left: 10px;
 }
 
+#find-me{
+    border-radius: 4px;
+    padding: 1px;
+    width: 125px;
+    height: 28px;
+    font-size: 12px;
+    background-color: #2196F3;
+    color:white;
+}
+
+#status{
+    margin-left: 10px;
+}
+
+#map-link{
+    font-size: 10px;
+}
 
 
 /*footer*/
