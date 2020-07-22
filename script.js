@@ -150,7 +150,7 @@ $(document).ready(function(){
                     var forecastHumid = response.list[i].main.humidity;
                     var forecastIcon = response.list[i].weather[0].icon;
                     var displayForecastIcon = $("<img id='forecastIcon'>");
-                        displayForecastIcon.attr("src","http://openweathermap.org/img/w/" + forecastIcon + ".png");
+                        displayForecastIcon.attr("src","https://openweathermap.org/img/w/" + forecastIcon + ".png");
                     //console.log("forecast temp" + forecastTemp);
                     //create div to store
                     var displayForcastDate = $("<h5>").text(forecastDate);
