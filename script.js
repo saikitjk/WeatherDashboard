@@ -32,9 +32,26 @@ $(document).ready(function(){
             var displayUnit = (" F");
             var displaySpeedUnit = (" MPH");
             }
+        
+            //console.log("passingdata is  "+ passingData);
+            //console.log(typeof passingData);
 
 
-        console.log("the city is "+city);
+        /*if(passingData.includes("lat=")){
+            var geoData = passingData;
+            console.log("the geodata is "+geoData);
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?"+geoData+"&units=" +unit +"&apikey="+ apikey;
+            //console.log("this is current weather API call " + queryURL);
+
+        }
+        else if(passingData){
+            var city = passingData;
+            console.log("the city is "+city);
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
+            console.log("this is current weather API call " + queryURL);
+
+        }*/
+
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
         //console.log("this is current weather API call " + queryURL);
 
@@ -282,17 +299,39 @@ $(document).ready(function(){
 
     const status = document.querySelector('#status');
     const mapLink = document.querySelector('#map-link');
+    const geoApikey = "3ac2c177ea774e4abafc67c38fc6aaca";
   
     mapLink.href = '';
-    mapLink.textContent = '';
+    mapLink.textLat = '';
+    mapLink.textLon = '';
   
     function success(position) {
       const latitude  = position.coords.latitude;
       const longitude = position.coords.longitude;
+
+    //console.log("lat:"+latitude+"lon:"+longitude);
   
       status.textContent = '';
       mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
       mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+
+        
+      var queryURL = "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+latitude+"&longitude="+longitude+"&apikey=" + geoApikey;
+        //console.log("this is 5 day api call "+ queryURL);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            }).then(function(response) {
+
+                var passingData = response.city;
+                console.log("city is "+ passingData);
+                displayCity(passingData);
+                displayForecast(passingData);
+                
+                $("#userLocation").append("Your current location: "+passingData);
+
+            });
+
     }
   
     function error() {
