@@ -36,22 +36,6 @@ $(document).ready(function(){
             //console.log("passingdata is  "+ passingData);
             //console.log(typeof passingData);
 
-
-        /*if(passingData.includes("lat=")){
-            var geoData = passingData;
-            console.log("the geodata is "+geoData);
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?"+geoData+"&units=" +unit +"&apikey="+ apikey;
-            //console.log("this is current weather API call " + queryURL);
-
-        }
-        else if(passingData){
-            var city = passingData;
-            console.log("the city is "+city);
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
-            console.log("this is current weather API call " + queryURL);
-
-        }*/
-
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=" +unit + "&apikey="+ apikey;
         //console.log("this is current weather API call " + queryURL);
 
@@ -271,16 +255,21 @@ $(document).ready(function(){
         $("#displayUnitSelection").empty()
     }
 
-    //onclick unit button
-    $("#metric").on("click", function(event){
-         //append unit choice display
-         clearUnitText()
-         var unitChoice = ("Weather data is in metric format");
+    function displayUnitFormat(){
+        var unitChoice = ("Weather data is in metric format");
          var unitHTML =$("<div class='unitD'>");
          var unitText = $("<p>").text(unitChoice);
              unitText.css("font-size","10px");
          unitHTML.append(unitText);
          $("#displayUnitSelection").append(unitHTML);
+    }
+    displayUnitFormat();
+
+    //onclick unit button
+    $("#metric").on("click", function(event){
+         //append unit choice display
+         clearUnitText()
+         displayUnitFormat();
          
     });
     $("#imperial").on("click", function(event){
@@ -302,7 +291,8 @@ $(document).ready(function(){
    }
 
    function geoFindMe() {
-
+    clear();
+    clearLocation();
     const status = document.querySelector('#status');
     const mapLink = document.querySelector('#map-link');
     const geoApikey = "3ac2c177ea774e4abafc67c38fc6aaca";
@@ -334,8 +324,7 @@ $(document).ready(function(){
                 displayCity(passingData);
                 displayForecast(passingData);
                 $("#userLocation").append("Your current location: "+passingData);
-                clear();
-                clearLocation();
+
 
 
             });
