@@ -295,6 +295,12 @@ $(document).ready(function(){
         
    });
 
+   //clear currentlocation field
+   function clearLocation(){
+        $("#userLocation").empty();
+        $("#map-link").empty();
+   }
+
    function geoFindMe() {
 
     const status = document.querySelector('#status');
@@ -327,8 +333,10 @@ $(document).ready(function(){
                 console.log("city is "+ passingData);
                 displayCity(passingData);
                 displayForecast(passingData);
-                
                 $("#userLocation").append("Your current location: "+passingData);
+                clear();
+                clearLocation();
+
 
             });
 
